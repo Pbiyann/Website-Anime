@@ -13,6 +13,10 @@
 # testing
 /coverage
 
+# local application data and binaries
+/backend-anime/*.db
+/backend-anime/*.exe
+
 # next.js
 /.next/
 /out/

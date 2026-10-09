@@ -1,4 +1,6 @@
 import './globals.css';
+import AccountMenu from './components/AccountMenu';
+import Link from 'next/link';
 
 export const metadata = {
   title: 'NontonAnime - Streaming Anime Lengkap',
@@ -17,12 +19,12 @@ export default function RootLayout({
         {/* NAVBAR GLOBAL */}
         <nav className="bg-neutral-900 border-b border-neutral-800 p-4 sticky top-0 z-50 shadow-md">
           <div className="container mx-auto flex justify-between items-center">
-            <a href="/" className="text-2xl font-bold text-red-500">
+            <Link href="/" className="text-2xl font-bold text-red-500">
               Nonton<span className="text-white">Anime</span>
-            </a>
+            </Link>
             
             <div className="hidden md:flex gap-6 text-sm font-medium">
-              <a href="/" className="hover:text-red-500 transition-colors">Beranda</a>
+              <Link href="/" className="hover:text-red-500 transition-colors">Beranda</Link>
               <a href="#" className="hover:text-red-500 transition-colors">Jadwal Rilis</a>
               <a href="/genre" className="hover:text-red-500 transition-colors">Genre</a>
             </div>
@@ -38,6 +40,7 @@ export default function RootLayout({
                 />
               </form>
             </div>
+                  <AccountMenu />
           </div>
         </nav>
 

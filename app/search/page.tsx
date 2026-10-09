@@ -1,11 +1,13 @@
 import Link from 'next/link';
 
+export const instant = false;
+
 export default async function SearchPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
   // Tunggu kata kunci dari URL siap
   const { q } = await searchParams;
   
   // Format parameter ke alamat Golang
-  const queryUrl = q ? `?q=${q}` : "";
+  const queryUrl = q ? `?${new URLSearchParams({ q })}` : "";
   
   // Menarik hasil pencarian spesifik dari server Golang
   const res = await fetch(`http://localhost:8080/api/animes${queryUrl}`, { cache: 'no-store' });
@@ -38,8 +40,12 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
               href={`/anime/${anime.id}`} 
               className="bg-neutral-900 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:shadow-red-500/20 block cursor-pointer"
             >
-              <div className="h-64 bg-neutral-800 flex items-center justify-center">
-                <span className="text-neutral-500 text-sm px-2 text-center">Poster {anime.judul}</span>
+              <div className="h-64 bg-neutral-800 relative overflow-hidden">
+                <img
+                  src={anime.gambar || `https://placehold.co/400x600/1a1a1a/red?text=${encodeURIComponent(anime.judul)}`}
+                  alt={`Poster ${anime.judul}`}
+                  className="w-full h-full object-cover"
+                />
               </div>
               
               <div className="p-4">
